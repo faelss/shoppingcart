@@ -1,0 +1,7 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 80px;
+    align-items: center;
+}
