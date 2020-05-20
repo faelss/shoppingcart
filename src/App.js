@@ -15,13 +15,12 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
+          <Header />
           <Switch>
             <Route exact path="/">
-              <Header />
               <ShoppingList />
             </Route>
             <Route exact path="/cart">
-              <Header />
               <Cart />
             </Route>
           </Switch>
