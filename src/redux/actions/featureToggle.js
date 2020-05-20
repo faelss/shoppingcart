@@ -1,13 +1,9 @@
 const getFeatureToggle = name => async dispatch => {
     dispatch({type: "FETCH_FEATURE_TOGGLE"});
 
-    console.log(name);
-    
-    
     const response = await fetch(`/features/${name}`);
     try {
         const json = await response.json();
-        console.log(json);
         
         dispatch({
             type: "FETCH_FEATURE_TOGGLE_SUCCESS",

@@ -10,9 +10,7 @@ function FeatureToggleComponent({ children, features, getFeatureToggle, featureN
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    console.log(features);
-    
-
+    //still needs to fix variant per component
     if (features.enabled) {
         return React.Children.map(children, child => React.cloneElement(child, {...features.props}));
     }
