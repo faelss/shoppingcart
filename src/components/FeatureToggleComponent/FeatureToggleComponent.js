@@ -3,16 +3,22 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getFeatureToggle } from '../../redux/actions/featureToggle';
 
-function FeatureToggleComponent({ children, features, getFeatureToggle, featureName, fallbackComponent }) {
+function FeatureToggleComponent({ children, isLoadingFeature, features, getFeatureToggle, featureName, fallbackComponent }) {
 
-    useLayoutEffect( () => {
+    const currentFeature = features.find(feature => feature.name === featureName);
+
+    useLayoutEffect(() => {
         getFeatureToggle(featureName);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     //still needs to fix variant per component
-    if (features.enabled) {
-        return React.Children.map(children, child => React.cloneElement(child, {...features.props}));
+    if (currentFeature?.enabled) {
+        return React.Children.map(children, child => React.cloneElement(child, {...currentFeature.props}));
+    }
+
+    if (isLoadingFeature) {
+        return null;
     }
 
     return fallbackComponent || null;
@@ -31,6 +37,7 @@ FeatureToggleComponent.defaultProps = {
 const mapStateToProps = ({ features }) => {
     return {
         features: features.features,
+        isLoadingFeature: features.loading,
     }
 };
 

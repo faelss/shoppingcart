@@ -1,5 +1,5 @@
 const initialState = {
-    features: {},
+    features: [],
     loading: false,
     error: null,
 }
@@ -17,7 +17,10 @@ const featureToggleReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                features: action.payload,
+                features: [
+                    ...state.features.filter(feature => feature.name !== action.payload.name),
+                    action.payload,
+                ],
             };
             
         case "FETCH_FEATURE_TOGGLE_ERROR":

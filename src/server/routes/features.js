@@ -27,6 +27,7 @@ router.get("/:name", (req, res) => {
 
   featureResponse = { 
     ...featureResponse,
+    name: req.params.name,
     enabled: isEnabled(req.params.name, context) 
   };
 
