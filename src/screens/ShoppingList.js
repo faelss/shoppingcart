@@ -53,9 +53,9 @@ function ShoppingList({ products, addToCartNewProduct, addToCartExistingProduct 
     )
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ products }) => {
     return {
-        products: state.products
+        products: products
     }
 };
 

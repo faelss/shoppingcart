@@ -6,8 +6,11 @@ import ShoppingList from "./screens/ShoppingList";
 import Header from "./components/Header/Header";
 import Cart from "./screens/Cart";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Footer from "./components/Footer/Footer";
+import FeatureToggleComponent from "./components/FeatureToggleComponent/FeatureToggleComponent";
 
 function App() {
+
   return (
     <Provider store={store}>
       <Router>
@@ -22,6 +25,9 @@ function App() {
               <Cart />
             </Route>
           </Switch>
+          <FeatureToggleComponent featureName="ShoppingCartFooter">
+            <Footer/>
+          </FeatureToggleComponent>
         </div>
       </Router>
     </Provider>
@@ -29,3 +35,4 @@ function App() {
 }
 
 export default App;
+

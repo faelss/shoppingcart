@@ -1,0 +1,8 @@
+.footer {
+    display: flex;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    background-color: azure;
+
+}

@@ -10,6 +10,7 @@
     padding: 3px;
     background-color: #6886c5;
     border-radius: 2px;
+    color: white;
 }
 
 .raised:hover {
