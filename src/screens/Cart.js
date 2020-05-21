@@ -32,17 +32,17 @@ const Cart = ({ products, removeFromCart }) => {
                 <div className="total">
                     Total price: ${products.reduce( (reducer, product) =>  (reducer += product.price * product.amount), 0)}
                 </div>
-                <FeatureToggleComponent
-                    featureName="Teste"
-                    fallbackComponent={
+                <FeatureToggleComponent featureName="Teste">
+                    <FeatureToggleComponent.ToggleComponent>
                         <div>
-                            Fallback component if feature compnent fails!
+                            New Feature!!
                         </div>
-                    }
-                >
-                    <div>
-                        New Feature!!
-                    </div>
+                    </FeatureToggleComponent.ToggleComponent>
+                    <FeatureToggleComponent.FallbackComponent>
+                        <div>
+                            Fallback component!
+                        </div>
+                    </FeatureToggleComponent.FallbackComponent>
                 </FeatureToggleComponent>
             </>
         </div>

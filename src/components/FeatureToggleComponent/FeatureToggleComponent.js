@@ -1,28 +1,63 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getFeatureToggle } from '../../redux/actions/featureToggle';
 
-function FeatureToggleComponent({ children, isLoadingFeature, features, getFeatureToggle, featureName, fallbackComponent }) {
+const FeatureToggleContext = createContext();
+
+function useFeatureToggleContext() {
+    const context = React.useContext(FeatureToggleContext);
+
+    if (!context) {
+        throw new Error(
+            'You cannot render this component outside FeatureToggleComponent!'
+        );
+    }
+
+    return context;
+}
+
+function FeatureToggleComponent({ children, isLoadingFeature, features, getFeatureToggle, featureName }) {
 
     const currentFeature = features.find(feature => feature.name === featureName);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         getFeatureToggle(featureName);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     //still needs to fix variant per component
-    if (currentFeature?.enabled) {
-        return React.Children.map(children, child => React.cloneElement(child, {...currentFeature.props}));
-    }
-
     if (isLoadingFeature) {
         return null;
     }
 
-    return fallbackComponent || null;
+    return (
+        <FeatureToggleContext.Provider value={currentFeature}>
+            {children}
+        </FeatureToggleContext.Provider>
+    );
 }
+
+const ToggleComponent = ({ children }) => {
+    const currentFeature = useFeatureToggleContext();
+    
+    if (currentFeature?.enabled) {
+        return React.Children.map(children, child => React.cloneElement(child, {...currentFeature.props}));
+    }
+    return null;
+};
+
+const FallbackComponent = ({ children }) => {
+    const currentFeature = useFeatureToggleContext();
+
+    if (!currentFeature?.enabled) {
+        return children;
+    }
+    return null;
+};
+
+FeatureToggleComponent.ToggleComponent = ToggleComponent;
+FeatureToggleComponent.FallbackComponent = FallbackComponent;
 
 FeatureToggleComponent.propTypes = {
     fallbackComponent: PropTypes.element,

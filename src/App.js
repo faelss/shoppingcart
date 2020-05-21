@@ -25,7 +25,14 @@ function App() {
             </Route>
           </Switch>
           <FeatureToggleComponent featureName="ShoppingCartFooter">
-            <Footer/>
+            <FeatureToggleComponent.ToggleComponent>
+              <Footer/>
+            </FeatureToggleComponent.ToggleComponent>
+            <FeatureToggleComponent.FallbackComponent>
+              <div>
+                  Fallback component!
+              </div>
+            </FeatureToggleComponent.FallbackComponent>
           </FeatureToggleComponent>
         </div>
       </Router>

@@ -1,6 +1,6 @@
 const initialState = {
     features: [],
-    loading: false,
+    loading: true,
     error: null,
 }
 
