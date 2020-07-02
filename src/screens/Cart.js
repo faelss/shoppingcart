@@ -41,7 +41,6 @@ const Cart = ({ products, removeFromCart }) => {
                     <FeatureToggleComponent.FallbackComponent>
                         <div>
                             Fallback component!
-                            
                         </div>
                     </FeatureToggleComponent.FallbackComponent>
                 </FeatureToggleComponent>
