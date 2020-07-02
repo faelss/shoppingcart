@@ -1,4 +1,4 @@
-import React, { useEffect, createContext } from 'react';
+import React, { useEffect, createContext, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getFeatureToggle } from '../../redux/actions/featureToggle';
@@ -27,7 +27,7 @@ function FeatureToggleComponent({ children, isLoadingFeature, features, getFeatu
     }, []);
 
     //still needs to fix variant per component
-    if (isLoadingFeature) {
+    if (!currentFeature) {
         return null;
     }
 

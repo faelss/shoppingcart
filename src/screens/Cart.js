@@ -35,12 +35,13 @@ const Cart = ({ products, removeFromCart }) => {
                 <FeatureToggleComponent featureName="Teste">
                     <FeatureToggleComponent.ToggleComponent>
                         <div>
-                            New Feature!!
+                            Teste
                         </div>
                     </FeatureToggleComponent.ToggleComponent>
                     <FeatureToggleComponent.FallbackComponent>
                         <div>
                             Fallback component!
+                            
                         </div>
                     </FeatureToggleComponent.FallbackComponent>
                 </FeatureToggleComponent>
